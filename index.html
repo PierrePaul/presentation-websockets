@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->  <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	
+	<title>Getting Started with deck.js</title>
+	
+	<meta name="description" content="Présentation WebSockets pour meetup HTML5mtl">
+	<meta name="author" content="Pierre Paul Lefebvre">
+	<meta name="viewport" content="width=1024, user-scalable=no">
+	
+	<!-- Core and extension CSS files -->
+	<link rel="stylesheet" href="/lib/core/deck.core.css">
+	<link rel="stylesheet" href="/lib/extensions/goto/deck.goto.css">
+	<link rel="stylesheet" href="/lib/extensions/menu/deck.menu.css">
+	<link rel="stylesheet" href="/lib/extensions/navigation/deck.navigation.css">
+	<link rel="stylesheet" href="/lib/extensions/status/deck.status.css">
+	<link rel="stylesheet" href="/lib/extensions/hash/deck.hash.css">
+	<link rel="stylesheet" href="/lib/extensions/scale/deck.scale.css">
+	
+	<!-- Style theme. More available in /themes/style/ or create your own. -->
+	<link rel="stylesheet" href="/lib/themes/style/web-2.0.css">
+	
+	<!-- Transition theme. More available in /themes/transition/ or create your own. -->
+	<link rel="stylesheet" href="/lib/themes/transition/fade.css">
+	
+	<script src="/lib/modernizr.custom.js"></script>
+</head>
+
+<body class="deck-container">
+    <section class="slide" id="intro">
+        <h1>Les WebSockets</h1>
+    </section>
+    <section class="slide" id="moi">
+        <h2>Pésentation</h2>
+        <p class="slide">Pierre Paul Lefebvre </p>
+        <p class="slide">Développeur </p>
+        <ul class="slide">
+            <li>PHP (expertise Drupal)</li>
+            <li>Python</li>
+            <li>SysAdmin à temps perdu</li>
+        </ul>
+    </section>
+    <section class="slide" id="toc">
+        <h2>Table des matières</h2>
+        <ol id="toc-list">
+        </ol>
+    </section>
+    <section class="slide" id="le-passe">
+        <h2>Modèle normal</h2>
+        <ol>
+            <li>Le client fait un appel au serveur</li>
+            <li>Le serveur répond dès que possible</li>
+            </ol>
+        <p class="slide" id="le-passe-avantages">
+            Très pratique, simple, petite charge sur le serveur.
+            </p>
+            <p class="slide" id="le-passe-desavantages">
+            Lorsque l'environnement du serveur change, il doit attendre d'être appelé par le client pour lui donner l'information.
+            </p>
+            </section>
+    <section class="slide" id="le-futur">
+    <h2>Les WebSockets</h2>
+    <p class="slide">
+        Les WebSockets permettent une connexion constante entre le client et le serveur. Donc lorsqu'un changement se passe sur le serveur, le client est mis à jour immédiatement.
+        </p>
+    </section>
+    <section class="slide" id="websockets-methodes">
+    <h2>Les deux écoles de pensée</h2>
+    <p>Principalement, deux méthodologies sont utilisées pour les WebSockets : </p>
+        <ul>
+             <li class="slide">
+             Intégration complète au niveau du framework. Des services peuvent être programmés à même le framework, utilisé dans le language voulu. Beaucoup de librairies de qualité variable existe.</li>
+             <li class="slide">
+                L'autre méthode très populaire, avoir un serveur de websocket (principalement fait en node.js) qui enregistre sur un système de "queue" comme Redis. Ensuite un framework peut lire la Queue Redis, traiter l'information et envoyer un message directement sur la Queue Redis pour être retraitée par le serveur de websocket. Le serveur de WebSocket va ré-envoyer l'information à tous les clients concernés.
+                </li>
+        </ul>
+    </section>
+    <section class="slide" id="technique-image-1">
+        <h2>Première méthode</h2>
+            <img src="/images/websocket-1.png" alt="Schéma de la première technique de WebSockets" />
+        </section>
+        <section class="slide" id="technique-image-2">
+        <h2>Deuxième méthode</h2>
+            <img src="/images/websocket-2.png" alt="Schéma de la deuxième technique de WebSockets" />
+    </section>
+    <section class="slide" id="demos-intro">
+        <h2>C'est le temps d'une pause - demos!</h2>
+        <ol>
+            <li>Démo WebSockets HTML5mtl : <a href="http://ws.pierre-paul.com" target="_blank">http://ws.pierre-paul.com</a></li>
+            <li> - Mare de tétards avec synchronisation entre les clients, canvas + websockets <a href="http://rumpetroll.com/" target="_blank">http://rumpetroll.com/</a></li>
+            <li>Scrabble mutli-joueurs - <a href="http://wordsquared.com/">http://wordsquared.com/</a></li>
+            <li>Labs HTML5 fait par Microsoft pour démontrer les WebSockets dans IE10 - <a href="http://html5labs.com/prototypes/websockets/websockets/info">http://html5labs.com/prototypes/websockets/websockets/info</a></li>
+        </ol>
+    </section>
+    <section class="slide" id="demos-aquarium">
+        <h2>L'Aquarium</h2>
+        <p>Vidéo synchronisé entre plusieurs machines, pour donner une impression d'aquarium avec plusieurs écrans. Les éléments sont générés via WebGL</p>
+        <iframe width="560" height="315" src="httpssss://www.youtube.com/embed/64TcBiqmVko" frameborder="0" allowfullscreen></iframe>	
+    </section>
+    <section class="slide" id="websocket-client-fonctionnement">
+    <h2>Côté client</h2>
+    <p>La connexion se fait en javascript, via l'objet WebSocket. L'objet expose 4 événements :</p>
+    <ul>
+        <li><b>onopen :</b> nous permet de savoir quand la connexion est établie.</li>
+        <li><b>onerror :</b> nous permet de savoir quand une erreur se produit (par exemple si le serveur ne répond pas).</li>
+        <li><b>onmessage : </b> lorsqu'un message est envoyé par le serveur de websocket.</li>
+        <li><b>onclose :</b> lorsque le socket se ferme...</li>
+    </ul>
+    </section>
+    <section class="slide" id="websocket-client-javascript">
+    <h2>En pratique</h2>
+    <pre>
+connection = new WebSocket('ws://ws.pierre-paul.com:9001/echo');
+connection.onopen = function () {};
+connection.onerror = function (error) {};
+connection.onmessage = function (e) {};    
+connection.onclose = function (e) {}
+    </pre>
+    </section>
+    <section class="slide" id="websocket-serveurs-exemples">
+        <h2>Les serveurs</h2>
+        <ul>
+            <li>Juggernaut - node.js <em>(<a href="https://github.com/maccman/juggernaut">https://github.com/maccman/juggernaut</a>)</em></li>
+            <li>Socket.io - node.js <em>(<a href="http://socket.io">http://socket.io</a>)</em></li>
+            <li>Faye - Ruby <em>(<a href="http://faye.jcoglan.com">http://faye.jcoglan.com</a>)</em></li>
+            <li>Nugget - fait en C# avec des bindings .NET <em>(<a href="http://nugget.codeplex.com/">http://nugget.codeplex.com</a>)</em></li>
+            <li>Tornado - fait par Facebook, python <em>(<a href="http://www.tornadoweb.org/">http://www.tornadoweb.org</a>)</em></li>
+            <li>etc.</li>
+        </ul>
+    </section>
+    <section class="slide" id="websocket-serveurs-pywebsocket">
+    <h2>PyWebSocket</h2>
+        <p class="slide">
+            Utilise la première méthode, les requêtes sont envoyés à un fichier python en particulier.
+        </p>
+        <p class="slide">
+            On peut faire fonctionner pywebsocket en mode "standalone" ou en module apache. Le module standalone est particulièrement utile lors du développement. 
+            </p>
+        <p class="slide">
+            En mode standalone, le fichier handler_map.txt permet de lier un fichier python à une URL. 
+        </p>
+
+    </section>
+    <section class="slide" id="look-into-future">
+    <h2>À regarder de près</h2>
+        <ul class="slide">
+            <li><a href="http://www.smartjava.org/content/face-detection-using-html5-javascript-webrtc-websockets-jetty-and-javacvopencv" target="_blank">WebRTC + Websockets + Canvas = Win</a></li>
+        </ul>
+    </section>
+<!-- deck.navigation snippet -->
+<a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+<a href="#" class="deck-next-link" title="Next">&#8594;</a>
+
+<!-- deck.status snippet -->
+<p class="deck-status">
+    <span>Pierre Paul Lefebvre - </span>
+	<span class="deck-status-current"></span>
+	/
+	<span class="deck-status-total"></span>
+</p>
+
+<!-- deck.goto snippet -->
+<form action="." method="get" class="goto-form">
+	<label for="goto-slide">Go to slide:</label>
+	<input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+	<datalist id="goto-datalist"></datalist>
+	<input type="submit" value="Go">
+</form>
+
+<!-- deck.hash snippet -->
+<a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+<!-- Place the following snippet at the bottom of the deck container. -->
+
+<!-- Grab CDN jQuery, with a protocol relative URL; fall back to local if offline -->
+<script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+<script>window.jQuery || document.write('<script src="/lib/jquery-1.7.min.js"><\/script>')</script>
+
+<!-- Deck Core and extensions -->
+<script src="/lib/core/deck.core.js"></script>
+<script src="/lib/extensions/hash/deck.hash.js"></script>
+<script src="/lib/extensions/menu/deck.menu.js"></script>
+<script src="/lib/extensions/goto/deck.goto.js"></script>
+<script src="/lib/extensions/status/deck.status.js"></script>
+<script src="/lib/extensions/navigation/deck.navigation.js"></script>
+<script src="/lib/extensions/scale/deck.scale.js"></script>
+<script src="scripts.js"></script>
+
+<!-- Initialize the deck -->
+<script>
+$(function() {
+	$.deck('.slide');
+});
+</script>
+
+</body>
+</html>
