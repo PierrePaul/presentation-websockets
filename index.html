@@ -100,7 +100,7 @@
     <section class="slide" id="demos-aquarium">
         <h2>L'Aquarium</h2>
         <p>Vidéo synchronisé entre plusieurs machines, pour donner une impression d'aquarium avec plusieurs écrans. Les éléments sont générés via WebGL</p>
-        <iframe width="560" height="315" src="httpssss://www.youtube.com/embed/64TcBiqmVko" frameborder="0" allowfullscreen></iframe>	
+        <iframe width="560" height="315" src="http://www.youtube.com/embed/64TcBiqmVko" frameborder="0" allowfullscreen></iframe>	
     </section>
     <section class="slide" id="websocket-client-fonctionnement">
     <h2>Côté client</h2>
@@ -130,6 +130,7 @@ connection.onclose = function (e) {}
             <li>Faye - Ruby <em>(<a href="http://faye.jcoglan.com">http://faye.jcoglan.com</a>)</em></li>
             <li>Nugget - fait en C# avec des bindings .NET <em>(<a href="http://nugget.codeplex.com/">http://nugget.codeplex.com</a>)</em></li>
             <li>Tornado - fait par Facebook, python <em>(<a href="http://www.tornadoweb.org/">http://www.tornadoweb.org</a>)</em></li>
+            <li>PyWebSocket - python <em>(<a href="#">http://#</a>)</em></li>
             <li>etc.</li>
         </ul>
     </section>
@@ -142,7 +143,8 @@ connection.onclose = function (e) {}
             On peut faire fonctionner pywebsocket en mode "standalone" ou en module apache. Le module standalone est particulièrement utile lors du développement. 
             </p>
         <p class="slide">
-            En mode standalone, le fichier handler_map.txt permet de lier un fichier python à une URL. 
+        En mode standalone, le fichier handler_map.txt permet de lier un fichier python à une URL. 
+        python standalone.py -p 9001 -w /complete/path/to/handler/ --log-level=info
         </p>
 
     </section>
