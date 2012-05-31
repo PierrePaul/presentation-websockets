@@ -51,7 +51,7 @@
         </ol>
     </section>
     <section class="slide" id="le-passe">
-        <h2>Modèle normal</h2>
+        <h2>Modèle standard</h2>
         <ol>
             <li>Le client fait un appel au serveur</li>
             <li>Le serveur répond dès que possible</li>
@@ -70,13 +70,13 @@
         </p>
     </section>
     <section class="slide" id="websockets-methodes">
-    <h2>Les deux écoles de pensée</h2>
+    <h2>Les deux écoles de pensées</h2>
     <p>Principalement, deux méthodologies sont utilisées pour les WebSockets : </p>
         <ul>
              <li class="slide">
-             Intégration complète au niveau du framework. Des services peuvent être programmés à même le framework, utilisé dans le language voulu. Beaucoup de librairies de qualité variable existe.</li>
+             Intégration complète au niveau du framework. Des services peuvent être programmés à même le framework, utilisés dans le language voulu. Il existe plusieurs librairies de qualité variable.</li>
              <li class="slide">
-                L'autre méthode très populaire, avoir un serveur de websocket (principalement fait en node.js) qui enregistre sur un système de "queue" comme Redis. Ensuite un framework peut lire la Queue Redis, traiter l'information et envoyer un message directement sur la Queue Redis pour être retraitée par le serveur de websocket. Le serveur de WebSocket va ré-envoyer l'information à tous les clients concernés.
+             Une autre méthode très populaire, serait d'avoir un serveur de websocket (principalement fait en node.js) qui enregistre sur un système de "queue" comme Redis. Ensuite, un framework peut lire la Queue Redis, traiter l'information et envoyer un message directement sur la Queue Redis pour être retraitée par le serveur de websocket. Le serveur de WebSocket va ré-envoyer l'information à tous les clients concernés.
                 </li>
         </ul>
     </section>
@@ -92,18 +92,18 @@
         <h2>C'est le temps d'une pause - demos!</h2>
         <ol>
             <li>Démo WebSockets HTML5mtl : <a href="http://ws.pierre-paul.com" target="_blank">http://ws.pierre-paul.com</a></li>
-            <li> - Mare de tétards avec synchronisation entre les clients, canvas + websockets <a href="http://rumpetroll.com/" target="_blank">http://rumpetroll.com/</a></li>
+            <li> Mare de tétards avec synchronisation entre les clients, canvas + websockets <a href="http://rumpetroll.com/" target="_blank">http://rumpetroll.com/</a></li>
             <li>Scrabble mutli-joueurs - <a href="http://wordsquared.com/">http://wordsquared.com/</a></li>
             <li>Labs HTML5 fait par Microsoft pour démontrer les WebSockets dans IE10 - <a href="http://html5labs.com/prototypes/websockets/websockets/info">http://html5labs.com/prototypes/websockets/websockets/info</a></li>
         </ol>
     </section>
     <section class="slide" id="demos-aquarium">
         <h2>L'Aquarium</h2>
-        <p>Vidéo synchronisé entre plusieurs machines, pour donner une impression d'aquarium avec plusieurs écrans. Les éléments sont générés via WebGL</p>
+        <p>Vidéo synchronisée entre plusieurs machines, pour donner une impression d'aquarium avec plusieurs écrans. Les éléments sont générés via WebGL</p>
         <video src="aquarium.mp4" controls width="800" height="500">Booouuhhh, bad browser</video>
     </section>
     <section class="slide" id="websocket-client-fonctionnement">
-    <h2>Côté client</h2>
+    <h2>Aspect client</h2>
     <p>La connexion se fait en javascript, via l'objet WebSocket. L'objet expose 4 événements :</p>
     <ul>
         <li><b>onopen :</b> nous permet de savoir quand la connexion est établie.</li>
